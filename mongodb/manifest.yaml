@@ -29,16 +29,16 @@ spec:
         image: manikantaakula/mongodb:v1
         ports:
         - containerPort: 80
-      readinessProbe:
-        tcpSocket:
-          port: 27017
-        initialDelaySeconds: 15
-        periodSeconds: 15
-      livenessProbe:
-        tcpSocket:
-          port: 27017
-        initialDelaySeconds: 5
-        periodSeconds: 5
+        readinessProbe:
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 15
+          periodSeconds: 15
+        livenessProbe:
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
 ---
 
