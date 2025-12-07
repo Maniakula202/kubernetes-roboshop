@@ -68,43 +68,39 @@ data:
         }
     }
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
   namespace: roboshop
-  labels: 
+  # these are replica set labels
+  labels:
     project: roboshop
-    environment: development
     component: frontend
-    tier: backend
+    tier: frontend
 spec:
   replicas: 1
   selector:
+    # these labels are used to select pods
     matchLabels:
       project: roboshop
-      environment: development
       component: frontend
-      tier: backend
+      tier: frontend
+  # pod definition
   template:
     metadata:
       labels:
         project: roboshop
-        environment: development
         component: frontend
-        tier: backend
+        tier: frontend
     spec:
       containers:
       - name: frontend
         image: joindevops/frontend:v1
         imagePullPolicy: Always
-        envFrom:
-        - configMapRef:
-            name: frontend
         ports:
         - name: liveness-port
-          containerPort: 80
+          containerPort: 8080
         readinessProbe:
           httpGet:
             path: /
@@ -126,7 +122,6 @@ spec:
         configMap:
           name: frontend
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -136,10 +131,9 @@ spec:
   type: LoadBalancer
   selector:
     project: roboshop
-    environment: development
     component: frontend
-    tier: backend
+    tier: frontend
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 8080 # container port
