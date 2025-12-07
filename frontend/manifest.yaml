@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: manikantaakula/frontend:v1
+        image: joindevops/frontend:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
