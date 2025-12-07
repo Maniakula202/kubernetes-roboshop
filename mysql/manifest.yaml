@@ -41,18 +41,18 @@ spec:
       - name: mysql
         image: manikantaakula/mysql:v1
         imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        readinessProbe:
-          tcpSocket:
-            port: 3306
-          initialDelaySeconds: 15
-          periodSeconds: 15
-        livenessProbe:
-          tcpSocket:
-            port: 3306
-          initialDelaySeconds: 15
-          periodSeconds: 5
+        # ports:
+        # - containerPort: 80
+        # readinessProbe:
+        #   tcpSocket:
+        #     port: 3306
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 15
+        # livenessProbe:
+        #   tcpSocket:
+        #     port: 3306
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 5
         volumeMounts:
         - name: mysql-config
           mountPath: /etc/mysql/conf.d/my.cnf
