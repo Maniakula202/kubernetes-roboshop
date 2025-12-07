@@ -28,8 +28,6 @@ spec:
       - name: redis
         image: redis:7.0
         imagePullPolicy: Always
-        ports:
-        - containerPort: 80
         readinessProbe:
           tcpSocket:
             port: 6379
